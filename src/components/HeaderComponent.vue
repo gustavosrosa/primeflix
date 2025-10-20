@@ -1,6 +1,6 @@
 <template>
     <BNavbar v-b-color-mode="'dark'" variant="dark" class="d-flex px-5" >
-        <BNavbarBrand href="#" variant="light">Prime Flix</BNavbarBrand>
+        <BNavbarBrand to="/" variant="light">Prime Flix</BNavbarBrand>
         <BNavbarToggle target="nav-collapse" />
         <BCollapse id="nav-collapse" is-nav>
             <BNavForm class="d-flex ms-auto mb-2 mb-lg-0" >
