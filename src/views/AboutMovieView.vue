@@ -5,7 +5,7 @@
             <BImg :src="moviePoster(movie.backdrop_path)" width="750" fluid />
             <h2>Sinopse</h2>
             <p>{{ movie.overview }}</p>
-            <h3 class="fs-5">Avaliação: {{movie.vote_average}} / 10</h3>
+            <h3 class="fs-5">Avaliação: {{roundAverage(movie.vote_average)}} / 10</h3>
             <div>
                 <BButton variant="danger" class="me-2">Salvar</BButton>
                 <BButton>Trailer</BButton>
@@ -39,18 +39,22 @@ async function getMovieFromId(id) {
     await newMovie.get(`/movie/${id}`, {
         params: {
             api_key: constants.ACCESS_API.PARAM,
-            language: "pt-BR",
+            language: constants.ACCESS_API.LANGUAGE,
             page: 1,
         }
     })
     .then((response)=>{
         movie.value = response.data;
-      })
+    })
 
 }
 
 function moviePoster(backdropPath) {
     return getMoviePoster(backdropPath);
+}
+
+function roundAverage(average) {
+    return average.toFixed(1);
 }
 
 </script>

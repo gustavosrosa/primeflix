@@ -32,7 +32,7 @@ async function loadFilmes() {
   const response = await newMovie.get("movie/now_playing", {
     params: {
       api_key: constants.ACCESS_API.PARAM,
-      language: "pt-BR",
+      language: constants.ACCESS_API.LANGUAGE,
       page: 1,
     }
   })
