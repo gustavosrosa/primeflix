@@ -1,13 +1,43 @@
 <template>
   <div class="home">
-    
+    <template v-for="movie in loadedMovie" :key="movie">
+      <MovieCardComponent class="card" :title="movie.title" :src="movie.backdrop_path" :id="movie.id"></MovieCardComponent>
+    </template>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<style>
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-export default defineComponent({
-  name: 'HomeView',
-});
+</style>
+
+<script setup>
+import MovieCardComponent from '@/components/MovieCardComponent.vue';
+import { onMounted, ref, } from 'vue';
+import newMovie from '../services/new-movie.service';
+
+let loadedMovie = ref([])
+
+onMounted(() => {
+  loadFilmes();
+})
+
+async function loadFilmes() {
+  const response = await newMovie.get("movie/now_playing", {
+    params: {
+      api_key: "28fc232cc001c31e8a031f419d0a14ca",
+      language: "pt-BR",
+      page: 1,
+    }
+  })
+
+  loadedMovie.value = response.data.results.slice(0, 10);
+}
+
+
 </script>
