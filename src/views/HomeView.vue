@@ -20,6 +20,7 @@
 import MovieCardComponent from '@/components/MovieCardComponent.vue';
 import { onMounted, ref, } from 'vue';
 import newMovie from '../services/new-movie.service';
+import { constants } from '@/utils/constants';
 
 let loadedMovie = ref([])
 
@@ -30,7 +31,7 @@ onMounted(() => {
 async function loadFilmes() {
   const response = await newMovie.get("movie/now_playing", {
     params: {
-      api_key: "28fc232cc001c31e8a031f419d0a14ca",
+      api_key: constants.ACCESS_API.PARAM,
       language: "pt-BR",
       page: 1,
     }
