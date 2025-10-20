@@ -13,7 +13,7 @@ import { defineProps } from 'vue';
 const props = defineProps(['title', 'src', 'id']);
 
 function setPoster(posterBackdropUrl) {
-    return `https://image.tmdb.org/t/p/original/${posterBackdropUrl}`
+    return `https://image.tmdb.org/t/p/original/${posterBackdropUrl}`;
 }
 
 function setToMovie(id) {
