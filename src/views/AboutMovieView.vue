@@ -2,7 +2,7 @@
     <section v-if="movie.title" class="container mt-5 d-flex flex-column">
         <div class="d-grid gap-3">
             <h1>{{ movie.title }}</h1>
-            <BImg :src="moviePoster(movie.backdrop_path)" fluid />
+            <BImg :src="moviePoster(movie.backdrop_path)" width="750" fluid />
             <h2>Sinopse</h2>
             <p>{{ movie.overview }}</p>
             <h3 class="fs-5">Avaliação: {{movie.vote_average}} / 10</h3>
