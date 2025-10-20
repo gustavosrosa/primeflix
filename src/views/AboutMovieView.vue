@@ -13,7 +13,7 @@
         </div>
     </section>
     <section v-else>
-        <h1 class="loading mt-5">Carregando....</h1>
+        <LoadingComponent />
     </section>
 </template>
 
@@ -24,6 +24,7 @@ import { BImg, BButton } from 'bootstrap-vue-next';
 import { onMounted, ref } from 'vue';
 import { constants } from '@/utils/constants';
 import getMoviePoster from '../services/get-poster-from-path.service'
+import LoadingComponent from '@/components/LoadingComponent.vue';
 
 const route = useRoute();
 
