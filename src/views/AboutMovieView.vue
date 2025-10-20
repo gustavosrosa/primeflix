@@ -8,7 +8,7 @@
             <h3 class="fs-5">Avaliação: {{roundAverage(movie.vote_average)}} / 10</h3>
             <div>
                 <BButton variant="danger" class="me-2">Salvar</BButton>
-                <BButton>Trailer</BButton>
+                <BButton type="button" target="_blank" :href="viewTrailerInYT(movie.title)">Trailer</BButton>
             </div>
         </div>
     </section>
@@ -55,6 +55,10 @@ function moviePoster(backdropPath) {
 
 function roundAverage(average) {
     return average.toFixed(1);
+}
+
+function viewTrailerInYT(movieTitle) {
+    return `https://youtube.com/results?search_query=${movieTitle} Trailer`;
 }
 
 </script>
