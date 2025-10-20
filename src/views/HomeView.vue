@@ -1,8 +1,15 @@
 <template>
   <div class="home">
-    <template v-for="movie in loadedMovie" :key="movie">
-      <MovieCardComponent class="card" :title="movie.title" :src="movie.backdrop_path" :id="movie.id"></MovieCardComponent>
+    <template v-if="loadedMovie.length > 0">
+      <template v-for="movie in loadedMovie" :key="movie">
+        <MovieCardComponent class="card" :title="movie.title" :src="movie.backdrop_path" :id="movie.id">
+        </MovieCardComponent>
+      </template>
     </template>
+    <template v-else>
+      <LoadingComponent />
+    </template>
+
   </div>
 </template>
 
@@ -13,13 +20,14 @@
   justify-content: center;
   align-items: center;
 }
-
 </style>
 
 <script setup>
 import MovieCardComponent from '@/components/MovieCardComponent.vue';
 import { onMounted, ref, } from 'vue';
 import newMovie from '../services/new-movie.service';
+import { constants } from '@/utils/constants';
+import LoadingComponent from '@/components/LoadingComponent.vue';
 
 let loadedMovie = ref([])
 
@@ -30,8 +38,8 @@ onMounted(() => {
 async function loadFilmes() {
   const response = await newMovie.get("movie/now_playing", {
     params: {
-      api_key: "28fc232cc001c31e8a031f419d0a14ca",
-      language: "pt-BR",
+      api_key: constants.ACCESS_API.PARAM,
+      language: constants.ACCESS_API.LANGUAGE,
       page: 1,
     }
   })

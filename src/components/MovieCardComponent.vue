@@ -9,11 +9,12 @@
 
 import { BCard, BButton, BImg } from 'bootstrap-vue-next';
 import { defineProps } from 'vue';
+import getMoviePoster from '../services/get-poster-from-path.service'
 
 const props = defineProps(['title', 'src', 'id']);
 
 function setPoster(posterBackdropUrl) {
-    return `https://image.tmdb.org/t/p/original/${posterBackdropUrl}`;
+    return getMoviePoster(posterBackdropUrl);
 }
 
 function setToMovie(id) {
