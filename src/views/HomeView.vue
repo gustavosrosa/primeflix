@@ -25,7 +25,7 @@
 <script setup>
 import MovieCardComponent from '@/components/MovieCardComponent.vue';
 import { onMounted, ref, } from 'vue';
-import newMovie from '../services/new-movie.service';
+import { newMovie } from '../services/new-movie.service';
 import { constants } from '@/utils/constants';
 import LoadingComponent from '@/components/LoadingComponent.vue';
 

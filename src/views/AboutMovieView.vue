@@ -8,7 +8,7 @@
             <p>{{ movie.overview }}</p>
             <h3 class="fs-5">Avaliação: {{roundAverage(movie.vote_average)}} / 10</h3>
             <div>
-                
+                <BButton type="button" @click="saveMovie()" variant="danger" class="me-3">Salvar</BButton>
                 <BButton type="button" target="_blank" :href="viewTrailerInYT(movie.title)">Trailer</BButton>
             </div>
         </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import newMovie from '@/services/new-movie.service';
+import { findMovieFromId } from '@/services/new-movie.service';
 import { useRoute } from 'vue-router';
 import { BImg, BButton } from 'bootstrap-vue-next';
 import { onMounted, ref } from 'vue';
@@ -30,26 +30,16 @@ import ToastMovieComponent from '@/components/ToastMovieComponent.vue';
 
 const route = useRoute();
 
-let movie = ref({})
+let movie = ref({});
+let id = ref(0);
 
 onMounted(() => {
-    const id = route.params.id;
-    getMovieFromId(id)
+    id.value = route.params.id;
+    getMovieFromId(id.value);
 })
 
 async function getMovieFromId(id) {
-
-    await newMovie.get(`/movie/${id}`, {
-        params: {
-            api_key: constants.ACCESS_API.PARAM,
-            language: constants.ACCESS_API.LANGUAGE,
-            page: 1,
-        }
-    })
-    .then((response)=>{
-        movie.value = response.data;
-    })
-
+    movie.value = await findMovieFromId(id);
 }
 
 function moviePoster(backdropPath) {
@@ -62,6 +52,10 @@ function roundAverage(average) {
 
 function viewTrailerInYT(movieTitle) {
     return `https://youtube.com/results?search_query=${movieTitle} Trailer`;
+}
+
+function saveMovie() {
+    console.log("OPI")
 }
 
 </script>

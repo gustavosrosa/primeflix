@@ -1,5 +1,5 @@
 <template>
-    <BToast :variant="light" :progress-props="{variant: props.progressVariant}" :model-value="2000" class="top-0 end-0 position-fixed m-3" no-close-button="true" >
+    <BToast :variant="light" :progress-props="{ variant: props.progressVariant }" :model-value="2000" class="top-0 end-0 position-fixed m-3" no-close-button="true" >
         <template #title> {{ props.toastTitle }} </template>
         {{ props.toastBody }}
     </BToast>
