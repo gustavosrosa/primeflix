@@ -6,6 +6,7 @@
             <BButton class="mt-5" variant="danger" :disabled="moviesToDelete.length == 0">Remover filmes</BButton>
         </div>
     </div>
+    <ModalComponent :title="modalInfo.TITLE" :body="modalInfo.BODY"/>
 </template>
 
 <style scoped>
@@ -24,7 +25,10 @@ import MovieListComponent from '@/components/MovieListComponent.vue';
 import { getMovieStorage } from '@/services/movie-list.service';
 import { onBeforeMount, reactive, ref } from 'vue';
 import { BButton } from 'bootstrap-vue-next'
+import ModalComponent from '@/components/ModalComponent.vue';
+import { constants } from '@/utils/constants';
 
+const modalInfo = constants.MODAL_TEXTS.ARE_YOU_SURE_TO_REMOVE;
 let movieList = reactive([]);
 let moviesToDelete = ref([])
 

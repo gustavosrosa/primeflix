@@ -9,5 +9,15 @@ export const constants = {
     TOAST_INFORMATIONS: {
         MOVIE_NOT_EXISTS: {title: 'Salvo!', body: 'Salvo com sucesso!', progressVariant: 'success'},
         MOVIE_EXISTS: {title: 'Ocorreu um erro!', body: 'O título já existe na lista!', progressVariant: 'danger'},
+    },
+    MODAL_TEXTS: {
+        ARE_YOU_SURE_TO_REMOVE: {
+            TITLE: "Deseja excluir os itens selecionados?",
+            BODY: "Essa ação não poderá ser desfeita!",
+        },
+        OPTIONS: {
+            OK: 'OK',
+            CANCEL: 'CANCEL',
+        },
     }
 }
