@@ -1,28 +1,15 @@
 <template>
-    <BButton
-    variant="danger" class="me-2"
-    @click="
-        create({
-            title: props.toastTitle,
-            variant: 'light',   
-            modelValue: 2000,
-            progressProps: {
-                variant: 'success',
-            },
-            body: props.toastBody,
-        })
-        ">
-        {{ btnText }}
-    </BButton>
+    <BToast :variant="light" :progress-props="{variant: props.progressVariant}" :model-value="2000" class="top-0 end-0 position-fixed m-3" no-close-button="true" >
+        <template #title> {{ props.toastTitle }} </template>
+        {{ props.toastBody }}
+    </BToast>
 </template>
 
 <script setup>
-import { BButton, useToast } from 'bootstrap-vue-next';
-import { defineProps } from 'vue';
+import { BToast } from 'bootstrap-vue-next';
+import { defineProps  } from 'vue';
 
-const { create } = useToast()
-
-const props = defineProps(['btnText', 'toastTitle', 'toastBody']);
+const props = defineProps(['btnText', 'toastTitle', 'toastBody', 'progressVariant']);
 
 </script>
 
