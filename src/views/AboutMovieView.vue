@@ -23,10 +23,11 @@ import { findMovieFromId } from '@/services/new-movie.service';
 import { useRoute } from 'vue-router';
 import { BImg, BButton } from 'bootstrap-vue-next';
 import { onMounted, ref } from 'vue';
-import { constants } from '@/utils/constants';
 import getMoviePoster from '../services/get-poster-from-path.service'
 import LoadingComponent from '@/components/LoadingComponent.vue';
 import ToastMovieComponent from '@/components/ToastMovieComponent.vue';
+import saveMovieIntoLocalStorage from '../services/movie-list.service'
+import { constants } from '@/utils/constants';
 
 const route = useRoute();
 
@@ -55,7 +56,7 @@ function viewTrailerInYT(movieTitle) {
 }
 
 function saveMovie() {
-    console.log("OPI")
+    saveMovieIntoLocalStorage(movie.value.id, movie.value.title);
 }
 
 </script>
