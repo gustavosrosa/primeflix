@@ -70,7 +70,6 @@ function handleSave() {
 }
 
 function setInfoToast(movieExists) {
-    console.log(movieExists)
     if (movieExists) {
         infoToast.value = constants.TOAST_INFORMATIONS.MOVIE_EXISTS;
         return;
