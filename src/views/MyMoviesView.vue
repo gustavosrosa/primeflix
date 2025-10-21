@@ -6,7 +6,7 @@
             <BButton @click="showModal = !showModal" class="mt-5" variant="danger" :disabled="moviesToDelete.length == 0">Remover filmes</BButton>
         </div>
     </div>
-    <ModalComponent @option="selectedOption" :title="modalInfo.TITLE" :body="modalInfo.BODY" :showModal="showModal"/>
+    <ModalComponent @option="selectedOption" :ok_title="modalInfo.DELETE_MOVIES" :title="modalInfo.TITLE" :body="modalInfo.BODY" :showModal="showModal"/>
 </template>
 
 <style scoped>
