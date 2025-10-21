@@ -1,13 +1,13 @@
 <template>
-    <section v-if="movie.title" class="container mt-5 d-flex flex-column">
+    <section v-if="movie.title" class="container mt-5 mb-5 d-flex flex-column">
         <div class="d-grid gap-3">
             <h1>{{ movie.title }}</h1>
-            <BImg :src="moviePoster(movie.backdrop_path)" width="750" fluid />
+            <BImg :src="moviePoster(movie.backdrop_path)" width="700" fluid />
             <h2>Sinopse</h2>
             <p>{{ movie.overview }}</p>
             <h3 class="fs-5">Avaliação: {{roundAverage(movie.vote_average)}} / 10</h3>
             <div>
-                <BButton variant="danger" class="me-2">Salvar</BButton>
+                <ToastMovieComponent btnText="Salvar" toastTitle="Salvo!" toastBody="Salvo com sucesso!"/>
                 <BButton type="button" target="_blank" :href="viewTrailerInYT(movie.title)">Trailer</BButton>
             </div>
         </div>
@@ -25,6 +25,7 @@ import { onMounted, ref } from 'vue';
 import { constants } from '@/utils/constants';
 import getMoviePoster from '../services/get-poster-from-path.service'
 import LoadingComponent from '@/components/LoadingComponent.vue';
+import ToastMovieComponent from '@/components/ToastMovieComponent.vue';
 
 const route = useRoute();
 
