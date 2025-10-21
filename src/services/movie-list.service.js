@@ -3,14 +3,14 @@ import { movieListContainsAnExistentMovie } from "../utils/list.util"
 
 const storage = constants.STORAGE.LOCAL_STORAGE_MOVIE;
 
-const getMovieStorage = (() => {
+export const getMovieStorage = (() => {
     if (window.localStorage.getItem(storage)) {
         return JSON.parse(window.localStorage.getItem(storage));
     }
     return [];
 })
 
-const saveMovieIntoLocalStorage = ((id, title) => {
+export const saveMovieIntoLocalStorage = ((id, title) => {
 
     let movieListStorage = getMovieStorage();
     const movieExists = movieListContainsAnExistentMovie(id, movieListStorage);
@@ -23,4 +23,4 @@ const saveMovieIntoLocalStorage = ((id, title) => {
     return movieExists;
 })
 
-export default saveMovieIntoLocalStorage;
+export default { saveMovieIntoLocalStorage, getMovieStorage };

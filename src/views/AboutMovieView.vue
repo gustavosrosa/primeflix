@@ -26,7 +26,7 @@ import { onMounted, ref } from 'vue';
 import getMoviePoster from '../services/get-poster-from-path.service'
 import LoadingComponent from '@/components/LoadingComponent.vue';
 import ToastMovieComponent from '@/components/ToastMovieComponent.vue';
-import saveMovieIntoLocalStorage from '../services/movie-list.service'
+import { saveMovieIntoLocalStorage } from '../services/movie-list.service'
 import { constants } from '@/utils/constants';
 
 const route = useRoute();

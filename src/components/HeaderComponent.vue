@@ -3,8 +3,8 @@
         <BNavbarBrand to="/" variant="light">Prime Flix</BNavbarBrand>
         <BNavbarToggle target="nav-collapse" />
         <BCollapse id="nav-collapse" is-nav>
-            <BNavForm class="d-flex ms-auto mb-2 mb-lg-0" >
-                <BButton type="submit" >Meus filmes</BButton>
+            <BNavForm class="d-flex ms-auto mb-lg-0" >
+                <BButton type="submit" to="/meus-filmes">Meus filmes</BButton>
             </BNavForm>
         </BCollapse>
     </BNavbar>
