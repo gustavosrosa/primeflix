@@ -1,5 +1,5 @@
 <template>
-    <ToastMovieComponent btnText="Salvar" toastTitle="Salvo!" toastBody="Salvo com sucesso!" progressVariant="success"/>
+    <ToastMovieComponent ref="toastRef" btnText="Salvar" toastTitle="Salvo!" toastBody="Salvo com sucesso!" progressVariant="success"/>
     <section v-if="movie.title" class="container mt-5 mb-5 d-flex flex-column">
         <div class="d-grid gap-3">
             <h1>{{ movie.title }}</h1>
@@ -8,7 +8,7 @@
             <p>{{ movie.overview }}</p>
             <h3 class="fs-5">Avaliação: {{roundAverage(movie.vote_average)}} / 10</h3>
             <div>
-                <BButton type="button" @click="saveMovie()" variant="danger" class="me-3">Salvar</BButton>
+                <BButton type="button" @click="handleSave()" variant="danger" class="me-3">Salvar</BButton>
                 <BButton type="button" target="_blank" :href="viewTrailerInYT(movie.title)">Trailer</BButton>
             </div>
         </div>
@@ -27,12 +27,12 @@ import getMoviePoster from '../services/get-poster-from-path.service'
 import LoadingComponent from '@/components/LoadingComponent.vue';
 import ToastMovieComponent from '@/components/ToastMovieComponent.vue';
 import saveMovieIntoLocalStorage from '../services/movie-list.service'
-import { constants } from '@/utils/constants';
 
 const route = useRoute();
 
 let movie = ref({});
 let id = ref(0);
+const toastRef = ref(null)
 
 onMounted(() => {
     id.value = route.params.id;
@@ -56,7 +56,12 @@ function viewTrailerInYT(movieTitle) {
 }
 
 function saveMovie() {
-    console.log(saveMovieIntoLocalStorage(movie.value.id, movie.value.title));
+    return saveMovieIntoLocalStorage(movie.value.id, movie.value.title);
+}
+
+function handleSave() {
+    const movieExists = saveMovie();
+    toastRef.value.openToast(movieExists)
 }
 
 </script>
