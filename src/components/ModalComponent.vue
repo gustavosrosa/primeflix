@@ -1,19 +1,23 @@
 <template>
-    <BButton @click="modal = !modal"> Toggle modal </BButton>
-    <BModal ref="my-modal" v-model="modal" :title="props.title" ok-variant='danger' ok-title="Excluir"
-        @ok="userOption(userOptions.OK)" @cancel="userOption(userOptions.CANCEL)">
+    <BModal ref="my-modal" v-model="show" :title="props.title" ok-variant='danger' ok-title="Excluir"
+        @ok="userOption(userOptions.OK)" @cancel="userOption(userOptions.CANCEL)" @close="userOption(userOptions.CANCEL)">
         {{ props.body }}
     </BModal>
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue'
+import { ref, defineProps, defineEmits, onUpdated } from 'vue'
 import { BButton, BModal } from 'bootstrap-vue-next'
 import { constants } from '@/utils/constants';
 
-const modal = ref(false)
-const props = defineProps(['title', 'body']);
+const props = defineProps(['title', 'body', 'showModal']);
 const emit = defineEmits(['option']);
+
+const show = ref(false);
+
+onUpdated(() => {
+    show.value = props.showModal;
+})
 
 const userOptions = constants.MODAL_TEXTS.OPTIONS;
 

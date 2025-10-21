@@ -3,10 +3,10 @@
         <h1 class="mb-5" >Lista dos Filmes</h1>
         <div class="container">
             <MovieListComponent @movies="selectedMovies" :movieList="movieList"/>
-            <BButton class="mt-5" variant="danger" :disabled="moviesToDelete.length == 0">Remover filmes</BButton>
+            <BButton @click="showModal = !showModal" class="mt-5" variant="danger" :disabled="moviesToDelete.length == 0">Remover filmes</BButton>
         </div>
     </div>
-    <ModalComponent :title="modalInfo.TITLE" :body="modalInfo.BODY"/>
+    <ModalComponent @option="selectedOption" :title="modalInfo.TITLE" :body="modalInfo.BODY" :showModal="showModal"/>
 </template>
 
 <style scoped>
@@ -30,7 +30,8 @@ import { constants } from '@/utils/constants';
 
 const modalInfo = constants.MODAL_TEXTS.ARE_YOU_SURE_TO_REMOVE;
 let movieList = reactive([]);
-let moviesToDelete = ref([])
+let moviesToDelete = ref([]);
+let showModal = ref(false)
 
 onBeforeMount(() => {
     movieList = getMovieStorage();
@@ -38,6 +39,11 @@ onBeforeMount(() => {
 
 function selectedMovies(movies) {
     moviesToDelete.value = movies;
+}
+
+function selectedOption(option) {
+    console.log(option);
+    showModal.value = false;
 }
 
 </script>
