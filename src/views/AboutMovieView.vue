@@ -56,7 +56,7 @@ function viewTrailerInYT(movieTitle) {
 }
 
 function saveMovie() {
-    saveMovieIntoLocalStorage(movie.value.id, movie.value.title);
+    console.log(saveMovieIntoLocalStorage(movie.value.id, movie.value.title));
 }
 
 </script>

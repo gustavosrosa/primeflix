@@ -13,13 +13,14 @@ const getMovieStorage = (() => {
 const saveMovieIntoLocalStorage = ((id, title) => {
 
     let movieListStorage = getMovieStorage();
+    const movieExists = movieListContainsAnExistentMovie(id, movieListStorage);
 
     if (!movieListContainsAnExistentMovie(id, movieListStorage)) {
         movieListStorage.push({ id, title });
         window.localStorage.setItem(storage, JSON.stringify(movieListStorage));
     }
     
-    return movieListContainsAnExistentMovie(id, movieListStorage);
+    return movieExists;
 })
 
 export default saveMovieIntoLocalStorage;
