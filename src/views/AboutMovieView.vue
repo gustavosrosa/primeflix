@@ -1,5 +1,5 @@
 <template>
-    <ToastMovieComponent ref="toastRef" btnText="Salvar" toastTitle="Salvo!" toastBody="Salvo com sucesso!" progressVariant="success"/>
+    <ToastMovieComponent ref="toastRef" btnText="Salvar" :toastTitle="infoToast.title" :toastBody="infoToast.body" :progressVariant="infoToast.progressVariant"/>
     <section v-if="movie.title" class="container mt-5 mb-5 d-flex flex-column">
         <div class="d-grid gap-3">
             <h1>{{ movie.title }}</h1>
@@ -27,12 +27,14 @@ import getMoviePoster from '../services/get-poster-from-path.service'
 import LoadingComponent from '@/components/LoadingComponent.vue';
 import ToastMovieComponent from '@/components/ToastMovieComponent.vue';
 import saveMovieIntoLocalStorage from '../services/movie-list.service'
+import { constants } from '@/utils/constants';
 
 const route = useRoute();
 
 let movie = ref({});
 let id = ref(0);
-const toastRef = ref(null)
+const toastRef = ref(null);
+const infoToast = ref({title: '', body: '', progressVariant: ''});
 
 onMounted(() => {
     id.value = route.params.id;
@@ -61,7 +63,19 @@ function saveMovie() {
 
 function handleSave() {
     const movieExists = saveMovie();
-    toastRef.value.openToast(movieExists)
+
+    setInfoToast(movieExists);
+
+    toastRef.value.openToast()
+}
+
+function setInfoToast(movieExists) {
+    console.log(movieExists)
+    if (movieExists) {
+        infoToast.value = constants.TOAST_INFORMATIONS.MOVIE_EXISTS;
+        return;
+    }
+    infoToast.value = constants.TOAST_INFORMATIONS.MOVIE_NOT_EXISTS;
 }
 
 </script>
