@@ -22,5 +22,12 @@ export const constants = {
             OK: 'OK',
             CANCEL: 'CANCEL',
         },
-    }
+    },
+    FIELD_TEXTS: {
+        LOADING: "Carregando....",
+        HEADER: {
+            BRAND: 'Prime Flix',
+            BTN_TEXT: 'Meus filmes',
+        },
+    },
 }
