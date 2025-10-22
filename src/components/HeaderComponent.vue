@@ -4,7 +4,7 @@
         <BNavbarToggle target="nav-collapse" />
         <BCollapse id="nav-collapse" is-nav>
             <BNavForm class="d-flex ms-auto mb-lg-0" >
-                <BButton type="submit" to="/meus-filmes">{{ headerText.BTN_TEXT }}</BButton>
+                <BButton data-test="btn" type="submit" to="/meus-filmes">{{ headerText.BTN_TEXT }}</BButton>
             </BNavForm>
         </BCollapse>
     </BNavbar>
