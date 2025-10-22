@@ -15,7 +15,8 @@ export const constants = {
         ARE_YOU_SURE_TO_REMOVE: {
             TITLE: "Deseja excluir os itens selecionados?",
             BODY: "Essa ação não poderá ser desfeita!",
-            DELETE_MOVIES: "Excluir"
+            DELETE_MOVIES: "Excluir",
+            CANCEL_ACTION: "Cancelar",
         },
         OPTIONS: {
             OK: 'OK',

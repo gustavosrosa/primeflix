@@ -1,5 +1,5 @@
 <template>
-    <BModal ref="my-modal" v-model="show" :title="props.title" ok-variant='danger' :ok-title="props.ok_title"
+    <BModal ref="my-modal" v-model="show" :title="props.title" ok-variant='danger' :ok-title="props.ok_title" :cancel-title="props.cancel_title"
         @ok="userOption(userOptions.OK)" @cancel="userOption(userOptions.CANCEL)" @close="userOption(userOptions.CANCEL)">
         {{ props.body }}
     </BModal>
@@ -10,7 +10,7 @@ import { ref, defineProps, defineEmits, onUpdated } from 'vue'
 import { BModal } from 'bootstrap-vue-next'
 import { constants } from '@/utils/constants';
 
-const props = defineProps(['title', 'body', 'showModal', 'ok_title']);
+const props = defineProps(['title', 'body', 'showModal', 'ok_title', 'cancel_title']);
 const emit = defineEmits(['option']);
 
 const show = ref(false);
