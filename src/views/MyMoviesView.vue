@@ -27,6 +27,7 @@ import { onBeforeMount, reactive, ref } from 'vue';
 import { BButton } from 'bootstrap-vue-next'
 import ModalComponent from '@/components/ModalComponent.vue';
 import { constants } from '@/utils/constants';
+import { removeSelectedMovies } from '@/utils/list.util';
 
 const modalInfo = constants.MODAL_TEXTS.ARE_YOU_SURE_TO_REMOVE;
 let movieList = reactive([]);
@@ -42,7 +43,9 @@ function selectedMovies(movies) {
 }
 
 function selectedOption(option) {
-    console.log(option);
+    if (option == constants.MODAL_TEXTS.OPTIONS.OK) {
+        removeSelectedMovies(moviesToDelete.value, movieList);
+    }
     showModal.value = false;
 }
 

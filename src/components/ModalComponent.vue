@@ -7,7 +7,7 @@
 
 <script setup>
 import { ref, defineProps, defineEmits, onUpdated } from 'vue'
-import { BButton, BModal } from 'bootstrap-vue-next'
+import { BModal } from 'bootstrap-vue-next'
 import { constants } from '@/utils/constants';
 
 const props = defineProps(['title', 'body', 'showModal', 'ok_title']);
