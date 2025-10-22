@@ -22,7 +22,7 @@
 
 <script setup>
 import MovieListComponent from '@/components/MovieListComponent.vue';
-import { getMovieStorage } from '@/services/movie-list.service';
+import { getMovieStorage, setItemInStorage } from '@/services/movie-list.service';
 import { onBeforeMount, reactive, ref } from 'vue';
 import { BButton } from 'bootstrap-vue-next'
 import ModalComponent from '@/components/ModalComponent.vue';
@@ -44,7 +44,10 @@ function selectedMovies(movies) {
 
 function selectedOption(option) {
     if (option == constants.MODAL_TEXTS.OPTIONS.OK) {
-        removeSelectedMovies(moviesToDelete.value, movieList);
+        let filteredMovieList = removeSelectedMovies(moviesToDelete.value, movieList);
+
+        setItemInStorage(filteredMovieList);
+        window.location.reload();
     }
     showModal.value = false;
 }

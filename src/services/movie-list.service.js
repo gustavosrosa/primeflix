@@ -8,7 +8,11 @@ export const getMovieStorage = (() => {
         return JSON.parse(window.localStorage.getItem(storage));
     }
     return [];
-})
+});
+
+export const setItemInStorage = ((list) => {
+    window.localStorage.setItem(storage, JSON.stringify(list));
+});
 
 export const saveMovieIntoLocalStorage = ((id, title) => {
 
@@ -17,10 +21,12 @@ export const saveMovieIntoLocalStorage = ((id, title) => {
 
     if (!movieListContainsAnExistentMovie(id, movieListStorage)) {
         movieListStorage.push({ id, title });
-        window.localStorage.setItem(storage, JSON.stringify(movieListStorage));
+        setItemInStorage(movieListStorage);
     }
     
     return movieExists;
 })
 
-export default { saveMovieIntoLocalStorage, getMovieStorage };
+
+
+export default { saveMovieIntoLocalStorage, getMovieStorage, setItemInStorage };
