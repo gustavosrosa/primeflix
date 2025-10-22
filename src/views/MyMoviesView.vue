@@ -7,6 +7,7 @@
         </div>
     </div>
     <ModalComponent @option="selectedOption" :ok_title="modalInfo.DELETE_MOVIES" :title="modalInfo.TITLE" :body="modalInfo.BODY" :showModal="showModal"/>
+    <ToastMovieComponent ref="toastRef" :toastTitle="infoToast.title" :toastBody="infoToast.body" :progressVariant="infoToast.progressVariant" />
 </template>
 
 <style scoped>
@@ -28,11 +29,15 @@ import { BButton } from 'bootstrap-vue-next'
 import ModalComponent from '@/components/ModalComponent.vue';
 import { constants } from '@/utils/constants';
 import { removeSelectedMovies } from '@/utils/list.util';
+import ToastMovieComponent from '@/components/ToastMovieComponent.vue';
 
 const modalInfo = constants.MODAL_TEXTS.ARE_YOU_SURE_TO_REMOVE;
+const infoToast = constants.TOAST_INFORMATIONS.DELETE_SUCCESSFUL;
+
 let movieList = reactive([]);
 let moviesToDelete = ref([]);
-let showModal = ref(false)
+let showModal = ref(false);
+const toastRef = ref(null);
 
 onBeforeMount(() => {
     movieList = getMovieStorage();
@@ -47,7 +52,10 @@ function selectedOption(option) {
         let filteredMovieList = removeSelectedMovies(moviesToDelete.value, movieList);
 
         setItemInStorage(filteredMovieList);
-        window.location.reload();
+        toastRef.value.openToast();
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
     }
     showModal.value = false;
 }
