@@ -9,7 +9,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'],
-      exclude: ['node_modules/', 'dist/', 'vite.config.js'],
+      exclude: ['node_modules/', 'dist/', '*.config.js', 'tests/', 'src/App.vue', 'src/main.ts', 'src/*.d.ts'],
     },
   },
 })
