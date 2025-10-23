@@ -22,7 +22,7 @@
 import { findMovieFromId } from '@/services/new-movie.service';
 import { useRoute } from 'vue-router';
 import { BImg, BButton } from 'bootstrap-vue-next';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, defineExpose } from 'vue';
 import getMoviePoster from '../services/get-poster-from-path.service'
 import LoadingComponent from '@/components/LoadingComponent.vue';
 import ToastMovieComponent from '@/components/ToastMovieComponent.vue';
@@ -76,6 +76,8 @@ function setInfoToast(movieExists) {
     }
     infoToast.value = constants.TOAST_INFORMATIONS.MOVIE_NOT_EXISTS;
 }
+
+defineExpose({ getMovieFromId, movie })
 
 </script>
 
