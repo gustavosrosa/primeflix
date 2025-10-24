@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutMovieView from '@/views/AboutMovieView.vue'
 import MyMoviesView from '@/views/MyMoviesView.vue'
 
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',

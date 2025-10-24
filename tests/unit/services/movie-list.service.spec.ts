@@ -1,4 +1,3 @@
-import { MovieTypeModel } from "@/models/movie-type.model";
 import { getMovieStorage, saveMovieIntoLocalStorage, setItemInStorage } from "@/services/movie-list.service";
 import { constants } from "@/utils/constants";
 import { vi } from "vitest";
@@ -19,7 +18,7 @@ describe("MovieListService", () => {
 
     const storage = constants.STORAGE.LOCAL_STORAGE_MOVIE;
     const list = [1, 2, 3];
-    const listWithMovies: MovieTypeModel[]  = [{ id: 1, title: "Filme A" }, { id: 2, title: "Filme B" }, { id: 3, title: "Filme C" }];
+    const listWithMovies = [{ id: 1, title: "Filme A" }, { id: 2, title: "Filme B" }, { id: 3, title: "Filme C" }];
 
     beforeEach(() => {
         mockLocalStorage.clear();
@@ -43,7 +42,7 @@ describe("MovieListService", () => {
     it("verify if saveMovieIntoLocalStorage save movie correctly in storage if movie do not exists in storage", () => {
         setItemInMockStorage(listWithMovies);
 
-        const addInfo: MovieTypeModel = {
+        const addInfo = {
             id: 4,
             title: "Filme D"
         }
@@ -58,7 +57,7 @@ describe("MovieListService", () => {
     it("verify if saveMovieIntoLocalStorage return storage if movie exists in storage", () => {
         setItemInMockStorage(listWithMovies);
 
-        const addInfo: MovieTypeModel = {
+        const addInfo = {
             id: 3,
             title: "Filme C"
         }
