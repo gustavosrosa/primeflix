@@ -1,7 +1,7 @@
-import { getMovieStorage, setItemInStorage } from "@/services/movie-list.service";
+import { MovieTypeModel } from "@/models/movie-type.model";
+import { getMovieStorage, saveMovieIntoLocalStorage, setItemInStorage } from "@/services/movie-list.service";
 import { constants } from "@/utils/constants";
 import { vi } from "vitest";
-
 
 const mockLocalStorage = (() => {
     let store = {};
@@ -19,6 +19,7 @@ describe("MovieListService", () => {
 
     const storage = constants.STORAGE.LOCAL_STORAGE_MOVIE;
     const list = [1, 2, 3];
+    const listWithMovies: MovieTypeModel[]  = [{ id: 1, title: "Filme A" }, { id: 2, title: "Filme B" }, { id: 3, title: "Filme C" }];
 
     beforeEach(() => {
         mockLocalStorage.clear();
@@ -30,14 +31,49 @@ describe("MovieListService", () => {
 
     it('verify getMovieStorage if storage contains a value inside', () => {
         const item = "[1]"
-        mockLocalStorage.setItem(storage, item);
-        expect(getMovieStorage()).toEqual(JSON.parse(item));
+        setItemInMockStorage(item);
+        expect(getMovieStorage()).toEqual(item);
     });
 
     it('verify if setItemInStorage set an item in storage correctly', () => {
-        
         setItemInStorage(list);
-        expect(mockLocalStorage.getItem(storage)).toBe(JSON.stringify(list));
+        expect(getMockStorage()).toBe(JSON.stringify(list));
     });
+
+    it("verify if saveMovieIntoLocalStorage save movie correctly in storage if movie do not exists in storage", () => {
+        setItemInMockStorage(listWithMovies);
+
+        const addInfo: MovieTypeModel = {
+            id: 4,
+            title: "Filme D"
+        }
+
+        saveMovieIntoLocalStorage(addInfo.id, addInfo.title)
+
+        listWithMovies.push(addInfo);
+
+        expect(JSON.parse(getMockStorage())).toEqual(listWithMovies);
+    });
+
+    it("verify if saveMovieIntoLocalStorage return storage if movie exists in storage", () => {
+        setItemInMockStorage(listWithMovies);
+
+        const addInfo: MovieTypeModel = {
+            id: 3,
+            title: "Filme C"
+        }
+
+        saveMovieIntoLocalStorage(addInfo.id, addInfo.title)
+
+        expect(JSON.parse(getMockStorage())).toEqual(listWithMovies);
+    });
+
+    function setItemInMockStorage(item) {
+        mockLocalStorage.setItem(storage, JSON.stringify(item));
+    }
+
+    function getMockStorage() {
+        return mockLocalStorage.getItem(storage);
+    }
 
 })
