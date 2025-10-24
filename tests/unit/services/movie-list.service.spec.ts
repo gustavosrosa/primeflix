@@ -1,16 +1,6 @@
+import { mockLocalStorage } from "@/mocks/mock-local-storage.mock";
 import { getMovieStorage, saveMovieIntoLocalStorage, setItemInStorage } from "@/services/movie-list.service";
 import { constants } from "@/utils/constants";
-import { vi } from "vitest";
-
-const mockLocalStorage = (() => {
-    let store = {};
-    return {
-        getItem: vi.fn(key => store[key] || null),
-        setItem: vi.fn((key, value) => { store[key] = value.toString(); }),
-        removeItem: vi.fn(key => { delete store[key]; }),
-        clear: vi.fn(() => { store = {}; }),
-    };
-})();
 
 Object.defineProperty(window, 'localStorage', { value: mockLocalStorage });
 

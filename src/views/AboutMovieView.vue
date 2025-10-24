@@ -77,7 +77,7 @@ function setInfoToast(movieExists) {
     infoToast.value = constants.TOAST_INFORMATIONS.MOVIE_NOT_EXISTS;
 }
 
-defineExpose({ getMovieFromId, movie })
+defineExpose({ getMovieFromId, movie, infoToast, setInfoToast })
 
 </script>
 
